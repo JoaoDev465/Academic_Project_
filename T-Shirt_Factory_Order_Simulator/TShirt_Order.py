@@ -11,11 +11,11 @@ class MenuTShirt:
         if quantidade < 20:
             return 0.0
         elif quantidade == 200:
-            return 0.8
+            return 0.5
         elif quantidade <= 2000:
-            return 0.12
+            return 0.7
         elif  quantidade <= 20000:
-             return 0.16
+             return 0.12
         else:
             print("não aceitamos esse pedido")
             return None
@@ -49,19 +49,17 @@ class MenuTShirt:
                 total_price_descont =  total_price - total_descont
                 print(f"voce escolheu a camiseta do modelo{chose_model}")
                 print(f"---------------------")
-                option = input("Entre com o transporte:(sedex,transportadora ou retirar ").strip().lower()
+                option = input("Entre com o transporte:(sedex,transportadora ou retirar): ").strip().lower()
                 if option not in ["transportadora","retirar","sedex"]:
+                    self.transport += option
                     print("transporte invlido tente novamente")
                     continue
                 else :
+                    price_whit_transport = self.transport[option]
 
-                    print(f"total de R$ {total_price_descont:.2f} , modelo {chose_model}  com desconto de R$ {total_descont:.2f} e transporte {option}")
+                    print(f"total de R$ {total_price_descont + price_whit_transport:.2f} , modelo {chose_model}  com desconto de R$ {total_descont:.2f} e transporte {option}:{price_whit_transport}")
                     break
 
-
-
             except ValueError:
-                print("")
+                print("Erro,tente novamente")
                 break
-
-
